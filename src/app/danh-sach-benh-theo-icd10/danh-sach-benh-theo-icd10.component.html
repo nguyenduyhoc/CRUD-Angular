@@ -1,0 +1,88 @@
+<section>
+    <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Tìm kiếm</mat-label>
+            <input matInput placeholder="Lọc từ khóa" name="tenBenh" [(ngModel)]="searchTenBenh" (input)="search()">
+        </mat-form-field>
+    </form>
+    <button (click)="openPopUp()" mat-button="" aria-label="Thêm bản ghi mới"
+        class="mat-focus-indicator mat-button mat-button-base"><span class="mat-button-wrapper"><span>Thêm bản ghi
+                mới</span>
+            <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true"
+                data-mat-icon-type="font">add</mat-icon>
+        </span>
+    </button>
+
+    <button (click)="capNhatLaiDanhSach()" mat-button="" aria-label="Cập nhật danh sách" title=""
+        class="mat-focus-indicator mat-button mat-button-base"><span class="mat-button-wrapper"><span
+            >Cập nhật danh sách</span>
+            <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color"
+                aria-hidden="true" data-mat-icon-type="font">refresh</mat-icon>
+        </span>
+    </button>
+
+    <button mat-button="" aria-label="Hướng dẫn" title=""
+        class="mat-focus-indicator mat-button mat-button-base"><span class="mat-button-wrapper"><span
+            >Hướng dẫn</span>
+            <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color"
+                aria-hidden="true" data-mat-icon-type="font">help_outline</mat-icon>
+        </span>
+    </button>
+</section>
+
+<div class="example-container mat-elevation-z8">
+    <table mat-table [dataSource]="pageSlice">
+        <!-- id Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>No. </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.id}}
+            </td>
+        </ng-container>
+
+        <!-- maBenh Column -->
+        <ng-container matColumnDef="maBenh">
+            <th mat-header-cell *matHeaderCellDef> Mã bệnh </th>
+            <td mat-cell *matCellDef="let element"> {{element.maBenh}} </td>
+        </ng-container>
+
+        <!-- tenBenh Column -->
+        <ng-container matColumnDef="tenBenh">
+            <th mat-header-cell *matHeaderCellDef> Tên bệnh</th>
+            <td mat-cell *matCellDef="let element"> {{element.tenBenh}} </td>
+        </ng-container>
+
+        <!-- Update Column -->
+        <ng-container matColumnDef="update">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element">
+                <button (click)="capNhatBanGhi(element.id)" mat-button="" aria-label="Sửa bản ghi"
+                    class="mat-focus-indicator mat-button mat-button-base"><span class="mat-button-wrapper"><span>Sửa
+                            bản ghi</span>
+                        <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color"
+                            aria-hidden="true" data-mat-icon-type="font">edit</mat-icon>
+                    </span>
+                </button>
+            </td>
+        </ng-container>
+
+        <!-- Delete Column -->
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element">
+                <button (click)="xoaBanGhi(element.id)" mat-button="" aria-label="Xóa bản ghi"
+                    class="mat-focus-indicator mat-button mat-button-base"><span class="mat-button-wrapper"><span>Xóa
+                            bản ghi</span>
+                        <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color"
+                            aria-hidden="true" data-mat-icon-type="font">delete</mat-icon>
+                    </span>
+                </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+<mat-paginator [length]="mangBenhTheoICD10.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="OnPageChange($event)" aria-label="Select page">
+</mat-paginator>
