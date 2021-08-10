@@ -1,29 +1,140 @@
-.example-form {
-  min-width: 150px;
-  max-width: 300px;
-  width: 100%;
+// Headers
+.benh-theo-icd-10 {
+  padding: 8px;
+  justify-content: center;
+  .containers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    background: #1690c4;
+    .containers-title {
+      font-size: 22px;
+      line-height: 24px;
+      font-weight: 500;
+      color: #fff;
+      margin: 0;
+      padding: 16px;
+      border-radius: 4px;
+      flex: 30%;
+    }
+    .containers-group-button {
+      right: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex: 20%;
+      button {
+        background: #dd682f;
+        font-size: 1rem !important;
+        color: #fff;
+        width: 200px;
+        margin-right: 16px;
+        border-radius: 4px;
+      }
+    }
+  }
 }
 
-.example-full-width {
-  width: 100%;
+// Search Input
+.search-form {
+  margin-top: 12px;
+
+  .example-form-field {
+    width: 400px;
+  }
 }
 
-.example-button-row button,
-.example-button-row a {
-  margin-right: 8px;
-}
-
-.example-container {
-  height: 400px;
-  overflow: auto;
-}
-
+//Table:
 table {
   width: 100%;
 }
-
-section{
-  display: flex;
-  justify-content: center;
+.mat-elevation-z8 {
+  box-shadow: none;
+  border: 1px solid #e0e0e0;
 }
-    
+
+.table-container {
+  height: 600px;
+  overflow: auto;
+}
+
+.mat-column-id {
+  width: 32px;
+  padding-left: 14px;
+  border-right: 1px solid #e0e0e0;
+}
+.mat-column-maBenh,
+.mat-column-tenBenh {
+  padding-left: 16px;
+  border-right: 1px solid #e0e0e0;
+}
+.title-table {
+  color: black;
+  font-size: 16px;
+}
+
+// Group Button:
+.btn-group {
+  border-radius: 4px;
+  background-color: #1690c4;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 10px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 6px;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
+}
+
+.btn-group {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btn-group:after {
+  content: "";
+  position: absolute;
+  opacity: 0;
+  top: 14px;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btn-group:hover {
+  padding-right: 24px;
+  padding-left: 8px;
+}
+
+.btn-group:hover:after {
+  opacity: 1;
+  right: 10px;
+}
+
+/* Responsive layout - makes a one column-layout instead of two-column layout */
+@media (max-width: 800px) {
+  .containers-title,
+  .containers-group-button {
+    flex: 100%;
+    margin-bottom: 5px;
+  }
+  .containers {
+    display: block !important;
+  }
+  .containers-title {
+    text-align: center;
+  }
+  .containers-group-button {
+    display: grid !important ;
+    justify-items: center;
+    button {
+      margin: 5px;
+    }
+  }
+}

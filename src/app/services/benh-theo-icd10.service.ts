@@ -7,7 +7,7 @@ import { BenhTheoICD10 } from '../models/BenhTheoICD10.models';
   providedIn: 'root',
 })
 export class BenhTheoICD10Service {
-  public mangBenhTheoICD10$ = new BehaviorSubject<any>([]);
+  public mangBenhTheoICD10$ = new BehaviorSubject<BenhTheoICD10[]>([]);
 
   private REST_API_SERVER =
     'https://610b9b962b6add0017cb398d.mockapi.io/BenhTheoICD10/';

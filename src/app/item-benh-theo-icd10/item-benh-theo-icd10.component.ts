@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BenhTheoICD10 } from '../models/BenhTheoICD10.models';
 import { BenhTheoICD10Service } from '../services/benh-theo-icd10.service';
 
 @Component({

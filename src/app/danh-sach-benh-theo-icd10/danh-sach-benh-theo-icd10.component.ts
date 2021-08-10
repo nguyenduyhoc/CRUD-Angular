@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
@@ -11,13 +12,14 @@ import { BenhTheoICD10Service } from '../services/benh-theo-icd10.service';
   styleUrls: ['./danh-sach-benh-theo-icd10.component.scss'],
 })
 export class DanhSachBenhTheoICD10Component implements OnInit {
-  searchTenBenh: any;
+  searchTenBenh: string = '';
   isPopupOpened = true;
-  displayedColumns = ['id', 'maBenh', 'tenBenh', 'update', 'delete'];
+  displayedColumns = ['id', 'maBenh', 'tenBenh'];
   public mangBenhTheoICD10: BenhTheoICD10[] = [];
   //Pagination
   public pageSlice = this.mangBenhTheoICD10.slice(0, 5);
-
+  // Item check
+  public itemCheck: any;
   constructor(
     private dialog: MatDialog,
     private benhTheoICD10SV: BenhTheoICD10Service
@@ -52,9 +54,12 @@ export class DanhSachBenhTheoICD10Component implements OnInit {
   }
 
   // Truyền dữ liệu cho Thêm -  Sửa  model
-  capNhatBanGhi(id: number) {
+  capNhat(itemcheck: BenhTheoICD10) {
+    console.log(itemcheck);
     this.isPopupOpened = true;
-    const detailBenh = this.mangBenhTheoICD10.find((item) => item.id === id);
+    const detailBenh = this.mangBenhTheoICD10.find(
+      (item) => item.id === itemcheck.id
+    );
     const dialogRef = this.dialog.open(ItemBenhTheoICD10Component, {
       data: detailBenh,
     });
@@ -65,8 +70,8 @@ export class DanhSachBenhTheoICD10Component implements OnInit {
   }
 
   // Xóa bản ghi
-  xoaBanGhi(id: number) {
-    this.benhTheoICD10SV.xoaBenh(id).subscribe((data) => {
+  xoaBan(itemcheck: BenhTheoICD10) {
+    this.benhTheoICD10SV.xoaBenh(itemcheck.id).subscribe((data) => {
       alert('Xóa thành công');
       this.capNhatDanhSachBenh();
       console.log(data);
@@ -84,19 +89,21 @@ export class DanhSachBenhTheoICD10Component implements OnInit {
   }
   //Search:
   search() {
-     if (this.searchTenBenh && this.searchTenBenh !== "") {
-        this.pageSlice = this.pageSlice.filter((res: { tenBenh: string; }) => {
-      return res.tenBenh?.toLocaleLowerCase().match(this.searchTenBenh.toLocaleLowerCase());
-      })
-    } else if (this.searchTenBenh == "") {
+    if (this.searchTenBenh && this.searchTenBenh !== '') {
+      this.pageSlice = this.mangBenhTheoICD10.filter((benh) =>
+        benh.tenBenh
+          .toLocaleLowerCase()
+          .includes(this.searchTenBenh.toLocaleLowerCase())
+      );
+    } else if (this.searchTenBenh == '') {
       this.ngOnInit();
     }
   }
 
-  // Cập nhật lại danh sách button  
-  capNhatLaiDanhSach(){
-    this.capNhatDanhSachBenh()
-    this.searchTenBenh = ''
+  // Cập nhật lại danh sách button
+  capNhatLaiDanhSach() {
+    this.capNhatDanhSachBenh();
+    this.searchTenBenh = '';
   }
 
   ngOnInit(): void {

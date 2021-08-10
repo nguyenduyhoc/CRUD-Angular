@@ -15,11 +15,13 @@ import {MatButtonModule} from '@angular/material/button'
 import {MatTableModule} from '@angular/material/table'
 import {MatRadioModule} from '@angular/material/radio';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     DanhSachBenhTheoICD10Component,
     ItemBenhTheoICD10Component,
+    SearchFilterPipe
   ],
   imports: [
     BrowserModule,
