@@ -36,15 +36,12 @@
             <mat-form-field class="example-form-field" appearance="outline">
                 <mat-label>Tìm kiếm</mat-label>
                 <input matInput type="text" placeholder="Lọc từ khóa" name="tenBenh" [(ngModel)]="searchTenBenh">
-                <!-- <button type="submit" matSuffix mat-icon-button aria-label="Search" (click)="search()">
-                    <mat-icon>search</mat-icon>
-                </button> -->
             </mat-form-field>
         </form>
     </div>
 
     <div class="table-container mat-elevation-z8">
-        <table mat-table [dataSource]="pageSlice | searchFilter:searchTenBenh">
+        <table mat-table [dataSource]="pageSlice |  searchFilter:searchTenBenh">
             <!-- id Column -->
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef></th>

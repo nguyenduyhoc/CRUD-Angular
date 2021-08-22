@@ -1,0 +1,79 @@
+table {
+  width: 100%;
+}
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  background-color: rgb(206, 206, 206);
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}
+
+.mat-column-STT {
+  width: 32px;
+  padding-left: 14px;
+  border-right: 1px solid #e0e0e0;
+}
+.mat-column-Khoa,
+.mat-column-HovaTen,
+.mat-column-MaHSSK,
+.mat-column-NgaySinh,
+.mat-column-GioiTinh,
+.mat-column-SoCMND,
+.mat-column-DiaChi {
+  padding-left: 16px;
+  border-right: 1px solid #e0e0e0;
+}
+.mat-cell{
+  border-bottom: 1px solid #e0e0e0 !important;
+
+}
+
+// Group Button:
+.btn-group {
+  border-radius: 4px;
+  background-color: #1690c4;
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 10px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 6px;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
+}
+
+.btn-group {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btn-group:after {
+  content: "";
+  position: absolute;
+  opacity: 0;
+  top: 14px;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btn-group:hover {
+  padding-right: 24px;
+  padding-left: 8px;
+}
+
+.btn-group:hover:after {
+  opacity: 1;
+  right: 10px;
+}
+
+

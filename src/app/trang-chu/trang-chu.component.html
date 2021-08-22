@@ -1,0 +1,65 @@
+<button class="btn-group" (click)="themThongTin()" mat-button="" aria-label="Thêm bản ghi mới">
+    <span>THÊM HỒ SƠ</span>
+    <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true"
+        data-mat-icon-type="font">add</mat-icon>
+</button>
+<button class="btn-group" (click)="capNhat(itemCheck.MaHSSK)" mat-button="" [disabled]="!itemCheck"
+    aria-label="Sửa bản ghi">
+    <span>SỬA HỒ SƠ</span>
+    <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true"
+        data-mat-icon-type="font">edit</mat-icon>
+</button>
+
+<table mat-table [dataSource]="mangThongTinHanhChinh" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="STT">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+            <mat-radio-group aria-label="Select an option" [(ngModel)]="itemCheck">
+                <mat-radio-button [value]="element"></mat-radio-button>
+            </mat-radio-group>
+        </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="Khoa">
+        <th mat-header-cell *matHeaderCellDef> Khóa </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color" aria-hidden="true"
+                data-mat-icon-type="font">lock</mat-icon>
+        </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="HovaTen">
+        <th mat-header-cell *matHeaderCellDef>Họ và Tên</th>
+        <td mat-cell *matCellDef="let element"> {{element.HoVaTen}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="MaHSSK">
+        <th mat-header-cell *matHeaderCellDef> Mã hồ sơ sức khỏe cá nhân</th>
+        <td mat-cell *matCellDef="let element"> {{element.MaHSSK}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="NgaySinh">
+        <th mat-header-cell *matHeaderCellDef> Ngày sinh</th>
+        <td mat-cell *matCellDef="let element"> {{element.NgaySinh | date: 'dd/MM/yyyy'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="GioiTinh">
+        <th mat-header-cell *matHeaderCellDef> Giới tính</th>
+        <td mat-cell *matCellDef="let element"> {{element.GioiTinh}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="SoCMND">
+        <th mat-header-cell *matHeaderCellDef>CMND</th>
+        <td mat-cell *matCellDef="let element"> {{element.SoCMND}} </td>
+    </ng-container>
+    <ng-container matColumnDef="DiaChi">
+        <th mat-header-cell *matHeaderCellDef> Địa chỉ</th>
+        <td mat-cell *matCellDef="let element"> {{element.NoiOHienNay}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

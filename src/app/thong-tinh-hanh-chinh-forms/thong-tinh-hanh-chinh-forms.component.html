@@ -1,0 +1,401 @@
+<form [formGroup]="thongTinHanhChinhForms" class="form-group" (ngSubmit)="onSubmit()">
+    <div class="row align-items-center container-fluid">
+        <div class="col-6 text-align-center">
+            <h1>Thông Tin Hành Chính</h1>
+            <a href="#">Kham khảo EHR</a>
+        </div>
+        <div class="form-input col-6">
+            <label>Mã HSSK cá nhân/Mã hộ GĐ <span class="text-danger">(*)</span>:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="MaHSSK" #MaHSSK required />
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-input col-md-4">
+            <label>Họ và tên <span class="text-danger">(*)</span>:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="HoVaTen" name="hoVaTen" required />
+                </mat-form-field>
+            </div>
+
+        </div>
+        <div class="form-input col-md-4">
+            <label>Ngày sinh <span class="text-danger">(*)</span>:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input formControlName="NgaySinh" matInput [matDatepicker]="picker" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+
+        </div>
+        <div class="form-input col-md-4">
+            <label>Giới tính <span class="text-danger">(*)</span>:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="GioiTinh" required>
+                        <mat-option *ngFor="let gender of gioiTinh" [value]="gender.value">
+                            {{gender.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-input col-md-4">
+            <label>Tỉnh đ.ký khai sinh<span class="text-danger">(*)</span>:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="TinhDangKyKhaiSinh" required>
+                        <mat-option *ngFor="let item of danhSachLocation" [value]="item.city">
+                            {{item.city}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label>Nhóm máu hệ ABO:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="NhomMauHeABO">
+                        <mat-option *ngFor="let item of nhomMau" [value]="item.value">
+                            {{item.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label>Hệ RH:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="HeRH">
+                        <mat-option *ngFor="let item of heRH" [value]="item.value">
+                            {{item.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-input col-md-4">
+            <label>Dân tộc:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="DanToc">
+                        <mat-option *ngFor="let item of danhSachDanToc" [value]="item.name">
+                            {{item.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label>Quốc tịch:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="QuocTich">
+                        <mat-option *ngFor="let item of danhSachQuocTich" [value]="item.name">
+                            {{item.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label>Tôn giáo:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="TonGiao">
+                        <mat-option *ngFor="let item of tonGiao" [value]="item.value">
+                            {{item.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-input col-md-4">
+            <label>Nghề nghiệp:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="NgheNghiep" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label>Quan hệ chủ hộ:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="QuanHeVoiChuHo">
+                        <mat-option *ngFor="let item of quanHeChuHo" [value]="item.value">
+                            {{item.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label> Loại giấy tờ:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="LoaiGiayTo">
+                        <mat-option *ngFor="let item of loaiGiayTo" [value]="item.value">
+                            {{item.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-input col-md-4">
+            <label>Số CMND/CCCD:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="SoCMND" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label>Ngày cấp:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input formControlName="NgayCap" matInput [matDatepicker]="picker1">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label>Nơi cấp:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="NoiCap" />
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-input col-md-4">
+            <label>Số thẻ BHYT:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="SoTheBHYT" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label>Nơi ĐKKCBBD:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="NoiĐKKCBBD" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <a href="#">Xem chi tiết thông tin BHYT</a>
+        </div>
+    </div>
+    <div class="col-12 row mt-5" style="margin-right: 0px; padding-right: 0px;">
+        <div _ngcontent-irw-c413="" class="col-md-12 col-12 label"
+            style="color: #8c8c8c; text-align: center; align-items: center; justify-content: center; border-bottom: 1px solid #e5e5e5;">
+            Hộ khẩu thường trú </div>
+    </div>
+    <div class="row align-items-center mt-3">
+        <div class="form-input col-12">
+            <label>Nơi ĐK:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="NoiDKHoKhauThuongTru" />
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-input col-md-4">
+            <label>Tỉnh/Thành <span class="text-danger">(*)</span>:</label>
+            <mat-form-field appearance="outline">
+                <mat-select (selectionChange)="changeHoKhauThuongTru($event)"
+                    formControlName="TinhThanhHoKhauThuongTru">
+                    <mat-option *ngFor="let item of vietNamData" [value]="item.city">
+                        {{item.city}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-input col-md-4">
+            <label>Quận/Huyện <span class="text-danger">(*)</span>:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="QuanHuyenHoKhauThuongTru">
+                        <mat-option *ngFor="let item of districts" [value]="item">
+                            {{item}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label>Phường/Xã<span class="text-danger">(*)</span>:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="PhuongXaHoKhauThuongTru" />
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 row mt-5" style="margin-right: 0px; padding-right: 0px;">
+        <div _ngcontent-irw-c413="" class="col-md-12 col-12 label"
+            style="color: #8c8c8c; text-align: center; align-items: center; justify-content: center; border-bottom: 1px solid #e5e5e5;">
+            Chỗ ở hiện nay </div>
+    </div>
+    <div class="row align-items-center mt-3">
+        <div class="form-input col-12">
+            <label>Nơi ở hiện nay:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="NoiOHienNay" />
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-input col-md-4">
+            <label>Tỉnh/Thành <span class="text-danger">(*)</span>:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="TinhThanhChoOHienNay" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label>Quận/Huyện <span class="text-danger">(*)</span>:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="QuanHuyenChoOHienNay" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label>Phường/Xã<span class="text-danger">(*)</span>:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="PhuongXaChoOHienNay" />
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-input col-md-4">
+            <label>Số điện thoại cố định:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="SoDienThoaiCoDinh" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label> Số di động:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="SoDienThoaiDiDong" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label>Email:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="email" />
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-input col-md-4">
+            <label>Họ tên bố:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="HoTenBo" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label>Họ tên mẹ:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="HoTenMe" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label>Người CS chính:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="NguoiCSChinh" />
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-input col-md-4">
+            <label>Quan hệ:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="QuanHe" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label>Số di động:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="SoDienThoaiDiDongNguoiQuanHe" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label>
+                Số điện thoại cố định:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="SoDienThoaiCoDinhNguoiQuanHe" />
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-input col-md-4">
+            <label>Địa chỉ:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="DiaChiNguoiQuanHe" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-input col-md-4">
+            <label> Email:</label>
+            <div>
+                <mat-form-field appearance="outline">
+                    <input matInput formControlName="EmailNguoiQuanHe" />
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="footer-form"></div>
+    <div class="example-button-row">
+        <button mat-fab color="primary">Lưu</button>
+    </div>
+
+</form>
